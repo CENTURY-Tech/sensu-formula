@@ -6,15 +6,6 @@ include:
   - sensu.rabbitmq_conf
   - sensu.redis_conf
 
-/etc/sensu/conf.d:
-  file.recurse:
-    - source: salt://sensu/files/conf.d
-    - template: jinja
-    - require:
-      - pkg: sensu
-    - watch_in:
-      - service: sensu-server
-
 /etc/sensu/extensions:
   file.recurse:
     - source: salt://sensu/files/extensions

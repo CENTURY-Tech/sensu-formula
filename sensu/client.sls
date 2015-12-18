@@ -39,19 +39,6 @@ sensu_enable_windows_service:
     - require:
       - pkg: sensu
 
-/etc/sensu/plugins:
-  file.recurse:
-    - source: salt://sensu/files/plugins
-    {% if grains['os_family'] != 'Windows' %}
-    - file_mode: 555
-    {% endif %}
-    - require:
-      - pkg: sensu
-    - require_in:
-      - service: sensu-client
-    - watch_in:
-      - service: sensu-client
-
 sensu-client:
   service.running:
     - enable: True
