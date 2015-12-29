@@ -36,7 +36,9 @@ sensu_enable_windows_service:
           address: {{ sensu.client.address }}
           subscriptions: {{ sensu.client.subscriptions }}
           safe_mode: {{ sensu.client.safe_mode }}
+        {% if sensu.client.custom_attributes %}
           {{ sensu.client.custom_attributes|yaml(False) }}
+        {% endif %}
     - require:
       - pkg: sensu
 
